@@ -7,7 +7,7 @@ addEventListener('fetch', event => {
 async function handleRequest(request) {
   const url = new URL(request.url);
   const headers_Origin = request.headers.get("Access-Control-Allow-Origin") || "*"
-  url.host = TELEGRAPH_URL.replace(/^https?:\/\//, '');
+  // url.host = TELEGRAPH_URL.replace(/^https?:\/\//, '');
   const modifiedRequest = new Request(url.toString(), {
     headers: request.headers,
     method: request.method,

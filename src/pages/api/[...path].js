@@ -8,8 +8,10 @@ async function handler(req) {
   // 提取请求的 URL，并将它转化为 URL 类型
   const url = new URL(req.url);
   const headers_Origin = req.headers.get("Access-Control-Allow-Origin") || "*"
-
-  let req_url = `https://aktools-zhiyizhilu.cloud.okteto.net${url.pathname}`
+  
+  // let req_url = `https://aktools-zhiyizhilu.cloud.okteto.net${url.pathname}`
+  url.host = 'aktools-zhiyizhilu.cloud.okteto.net'
+  let req_url = url.toString()
   // let req_url = req.url
   // if (req.method === "GET") {
   //   const reqParams = url.search.replace(/&path=[^&]+/g, "");

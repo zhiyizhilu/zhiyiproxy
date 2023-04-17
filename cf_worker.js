@@ -1,4 +1,4 @@
-const TELEGRAPH_URL = 'https://api.openai.com';
+const TELEGRAPH_URL = 'https://aktools-zhiyizhilu.cloud.okteto.net';
 
 addEventListener('fetch', event => {
   event.respondWith(handleRequest(event.request))
@@ -20,3 +20,18 @@ async function handleRequest(request) {
   modifiedResponse.headers.set('Access-Control-Allow-Origin', headers_Origin);
   return modifiedResponse;
 }
+
+
+// export default {
+//   async fetch(request, env) {
+//     const url = new URL(request.url);
+//     url.host = "aktools-zhiyizhilu.cloud.okteto.net";
+//     // openai is already set all CORS heasders 
+//     return fetch(url, {
+//       headers: request.headers,
+//       method: request.method,
+//       body: request.body,
+//       redirect: 'follow'
+//     });
+//   }
+// }

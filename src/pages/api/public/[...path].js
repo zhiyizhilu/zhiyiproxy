@@ -12,8 +12,8 @@ async function handler(req) {
   
   let proxy_origin = 'https://aktools-zhiyizhilu.cloud.okteto.net'
 
-  proxy_origin = 'https://aktools-production.up.railway.app'
-  
+  // proxy_origin = 'https://aktools-production.up.railway.app'
+
   let req_url = `${proxy_origin+url.pathname}`
 
   let reqParams = ""

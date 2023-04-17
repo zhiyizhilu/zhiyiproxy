@@ -4,20 +4,32 @@ export const config = {
 
 // 异步函数，处理 HTTP 请求
 async function handler(req) {
-
+  
+  
   // 提取请求的 URL，并将它转化为 URL 类型
   const url = new URL(req.url);
   const headers_Origin = req.headers.get("Access-Control-Allow-Origin") || "*"
   
-  // let req_url = `https://aktools-zhiyizhilu.cloud.okteto.net${url.pathname}`
-  url.host = 'aktools-zhiyizhilu.cloud.okteto.net'
-  let req_url = url.toString()
+  let proxy_origin = 'https://aktools-zhiyizhilu.cloud.okteto.net'
+
+  proxy_origin = 'https://aktools-production.up.railway.app'
+  
+  let req_url = `${proxy_origin+url.pathname}`
+
+  let reqParams = ""
+  if (req.method === "GET") {
+    if(req.url.indexOf('/&path')>0){
+      reqParams = url.search.replace(/&path=[^&]+/g, "");
+    }
+    req_url = req_url + reqParams
+    console.log('reqParams ', reqParams);
+  }
+
+  console.log('req_url ', req_url);
+
+
   // let req_url = req.url
-  // if (req.method === "GET") {
-  //   const reqParams = url.search.replace(/&path=[^&]+/g, "");
-  //   req_url = req_url + reqParams
-  //   console.log(reqParams);
-  // }
+  
 
 
   // 创建一个新的请求，指向 OpenAI 的 API
@@ -42,7 +54,7 @@ async function handler(req) {
     return modifiedResponse;
   } catch (e) {
     // 处理错误，打印错误信息到控制台
-    console.log(e);
+    console.error(e);
   }
 }
 

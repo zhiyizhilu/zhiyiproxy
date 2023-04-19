@@ -9,6 +9,11 @@ const nextConfig = {
         destination: "https://aktools-zhiyizhilu.cloud.okteto.net/:slug*",
         // destination: "https://aktools-production.up.railway.app/:slug*",
       },
+      {
+        source: "/aktools/:slug*",
+        destination: "https://aktools-production.up.railway.app/:slug*",
+      },
+      
     ];
   }
 }
